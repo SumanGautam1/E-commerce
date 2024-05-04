@@ -6,6 +6,8 @@ Ecommerce website built with Django 5.0.3, Python 3.12.2, and Bootstrap
 
 # Installation
 
+create a new folder in your desktop and inside the folder, run following commands accordingly
+
 `git clone https://github.com/SumanGautam1/E-commerce.git`
 
 `cd project`
