@@ -1,0 +1,28 @@
+{% extends 'main.html' %}
+{% block content %}
+
+<!-- Header-->
+        <h1>
+            All Product Categories
+        </h1>
+
+        <div class="container">
+        	<div class="row">
+        			<div class="col-8">
+        				<br/><br/>
+                        
+                        {% for category in categories %}
+
+                        <ul>
+                            <li>
+                                <h3><a href="{% url 'category' category %}" style="text-decoration: none;">{{ category }}</a></h3>
+                            </li>
+                        </ul>
+
+                        {% endfor %}
+<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+        			</div>
+        	</div>
+        </div>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "main.html" %}
+{% load static %}
+
+{% block title %}
+ LogIn
+{% endblock title %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock stylesheet %}
+
+{% block content %}
+
+<div class="container login-register-container">
+    <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-6">
+            <form class="form" method="POST" action="{% url 'login' %}">
+                {% csrf_token %}
+        
+                <p class="title">LOGIN </p>
+        
+                <label>
+                    <input class="input" type="text" placeholder="" required="" name="username">
+                    <span>Username</span>
+                </label>
+        
+                <label>
+                    <input class="input" type="password" placeholder="" required="" name="password">
+                    <span>Password</span>
+                </label>
+                <button class="submit">Submit</button>
+                <p class="signin">Don't have an acount? <a href="{% url 'register' %}">SignUp</a> </p>
+                <p class="signin">Forgot password? <a href="{% url 'password_reset' %}">Reset</a> </p>
+
+
+
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block footer-js %}
+{% if messages %}
+{% for message in messages %}
+<script>
+  alertify.set('notifier', 'position', 'bottom-right');
+  alertify.error('{{message}} {{user.username}}!');
+</script>
+{% endfor %}
+{% endif %}
+{% endblock footer-js %}

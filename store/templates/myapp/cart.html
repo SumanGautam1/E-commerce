@@ -1,0 +1,86 @@
+{% extends "main.html" %}
+{% load static %}
+{% block title %}
+Cart
+{% endblock title %}
+{% block content %}
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="box-element">
+				<a class="btn btn-outline-dark" href="{% url 'home' %}">&#x2190; Continue Shopping</a>
+				<br>
+				<br>
+				<table class="table">
+					<tr>
+						<th>
+							<h5>Total Items: <strong>{{total_quantity}}</strong></h5>
+						</th>
+						<th>
+							<h5>Grand Total:<strong> RS {{total_price}}</strong></h5>
+						</th>
+						<th>
+							<a style="float:right; margin:5px;" class="btn btn-success"
+								href="{% url 'checkout' %}">Checkout</a>
+						</th>
+					</tr>
+				</table>
+	
+	
+			</div>
+	
+			<div class="box-element">
+				<div class="row">
+					<div class="col-lg-3"></div>
+					<div class="col-lg-3">
+						<strong>Item</strong>
+	
+					</div>
+					<div class="col-lg-3">
+						<strong>Price</strong>
+	
+					</div>
+					<div class="col-lg-2">
+						<strong>Quantity</strong>
+	
+					</div>
+					<div class="col-lg-1">
+						<strong>Total</strong>
+	
+					</div>
+				</div>
+	
+	
+				{% for item in cart_items %}
+				<div class="row">
+					<div class="col-lg-3">
+						<img class="row-image" src="{{ item.product.image.url }}">
+					</div>
+					<div class="col-lg-3">
+						<p>{{ item.product.name }}</p>
+					</div>
+					<div class="col-lg-3">
+						<p>RS {{ item.product.price }}</p>
+					</div>
+					<div class="col-lg-2">
+						<p class="quantity">{{ item.quantity }}</p>
+						<div class="quantity">
+							
+							<a href="{% url 'add_to_cart' item.product.id %}"><img class="chg-quantity" src="{% static  'images/uparrow.png' %}"></a>
+								
+							<a href="{% url 'remove_from_cart' item.id %}"><img class="chg-quantity" src="{% static  'images/downarrow.png' %}"></a>
+						</div>
+					</div>
+					<div class="col-lg-1">
+						<p>RS {{item.get_total}}</p>
+					</div>
+				</div>
+				<hr>
+				{% empty %}
+				<p>Your cart is empty.</p>
+				  
+				{% endfor %}
+				
+			</div>
+		</div>
+	</div>
+	{% endblock content %}

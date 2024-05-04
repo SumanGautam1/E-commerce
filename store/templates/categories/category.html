@@ -1,0 +1,42 @@
+{% extends 'main.html' %}
+
+
+{% block content %}
+
+<div class="row">
+	<h1>{{ category }}</h1>
+	{% for product in products %}
+	<div class="col-lg-4">
+		<div class="outline-box">
+			<img class="thumbnail" src="{{product.image.url}}" alt="">
+			<div class="box-element product">
+				<h1 style="font-variant: small-caps;"><strong>{{product.name}}</strong></h1>
+				<hr>
+
+				{% if request.user.is_authenticated %}
+				<a href="{% url 'add_to_cart' product.id %}"><button
+						class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button></a>
+				<a class="btn btn-outline-success" href="{% url 'add_to_wishlist' product.id %}">Add to Wishlist</a>
+				
+				{% else %}
+
+				<a href="{% url 'login' %}"><button class="btn btn-outline-secondary add-btn update-cart">Add
+						to Cart</button></a>
+				<a class="btn btn-outline-success" href="{% url 'login' %}">Add to Wishlist</a>
+
+				{% endif %}
+
+
+				<h4 style="float: right;"><strong>RS {{product.price}}</strong></h4>
+			</div>
+		</div>
+	</div>
+
+	{% endfor %}
+
+
+
+</div>
+
+
+{% endblock content %}

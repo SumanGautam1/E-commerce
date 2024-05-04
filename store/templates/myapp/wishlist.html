@@ -1,0 +1,61 @@
+{% extends 'main.html' %}
+{% load static %}
+{% block title %}
+Wishlist
+{% endblock title %}
+{% block content %}
+
+
+<h2>Your Wishlist</h2>
+
+
+<div class="row" style="padding-bottom: 20px;">
+    <div class="box-element">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-lg-3">
+                <strong>Item</strong>
+
+            </div>
+            <div class="col-lg-3">
+                <strong>Price</strong>
+            </div>
+            <div class="col-lg-3">
+                <strong>Remove</strong>
+            </div>
+        </div>
+
+        {% if wishlist_items %}
+        {% for item in wishlist_items %}
+        <div class="row">
+            <div class="col-lg-3">
+                <img class="row-image" src="{{ item.product.image.url }}">
+            </div>
+            <div class="col-lg-3">
+                <p>{{ item.product.name }}</p>
+            </div>
+            <div class="col-lg-3">
+                <p>RS {{ item.product.price }}</p>
+            </div>
+            <div class="col-lg-3">
+                <a class="btn btn-outline-info" href="{% url 'product' item.id  %}">View</a>
+                
+				<a class="btn btn-outline-success" href="{% url 'remove_from_wishlist' item.id %}">Remove from wishlist</a>
+                <a href="{% url 'add_to_cart' item.product.id %}" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</a>
+            </div>
+            
+        </div>
+        <hr>
+        {% empty %}
+        <p>Your wishlist is empty.</p>
+
+        {% endfor %}
+        {% else %}
+        <p>Your wishlist is empty.</p>
+        {% endif %}
+
+        
+    </div>
+</div>
+
+{% endblock %}

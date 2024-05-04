@@ -1,0 +1,73 @@
+{% extends "main.html" %}
+{% load static %}
+
+
+{% block title %}
+ Register
+{% endblock title %}
+
+{% block stylesheet %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock stylesheet %}
+
+{% block content %}  
+
+<div class="container login-register-container">
+    <div class="row">
+        <div class="col-md-5"></div>
+        <div class="col-md-6">
+            <form class="form" method="POST" action="{% url 'register' %}">
+                {% csrf_token %}
+        
+                <p class="title">Register </p>
+                <div class="flex">
+                    <label>
+                        <input class="input" type="text" placeholder="" required="" name="first_name">
+                        <span>Firstname</span>
+                    </label>
+        
+                    <label>
+                        <input class="input" type="text" placeholder="" required="" name="last_name">
+                        <span>Lastname</span>
+                    </label>
+                </div>
+        
+                <label>
+                    <input class="input" type="text" placeholder="" required="" name="username">
+                    <span>Username</span>
+                </label>
+        
+                <label>
+                    <input class="input" type="email" placeholder="" required="" name="email">
+                    <span>Email</span>
+                </label>
+        
+                <label>
+                    <input class="input" type="password" placeholder="" required="" name="password">
+                    <span>Password</span>
+                </label>
+                <label>
+                    <input class="input" type="password" placeholder="" required="" name="password1">
+                    <span>Confirm password</span>
+                </label>
+                <button class="submit">Submit</button>
+                <p class="signin">Already have an acount ? <a href="{% url 'login' %}">SignIn</a> </p>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock content %}
+
+{% block footer-js %}
+{% if messages %}
+{% for message in messages %}
+<script>
+  alertify.set('notifier', 'position', 'bottom-right');
+  alertify.success('{{message}}!');
+</script>
+{% endfor %}
+{% endif %}
+{% endblock footer-js %}
