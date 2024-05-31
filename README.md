@@ -20,8 +20,6 @@ or
 
 `pip install -r requirements.txt`
 
-Make sure to edit your 'SECRET_KEY' and 'DEBUG' in settings
-
 
 `python manage.py makemigrations`
 
